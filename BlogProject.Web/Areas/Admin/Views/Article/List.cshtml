@@ -1,0 +1,57 @@
+﻿@model List<GetArticleVM>
+@{
+    ViewData["Title"] = "List";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="box">
+            <div class="box-header">
+                <h4 class="box-title">List of Articles</h4>
+            </div>
+            <div class="box-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Content</th>
+                            <th>Image</th>
+                            <th>Category Name</th>
+                            <th>Author</th>
+                            <th>Update</th>
+                            <th>Details</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (GetArticleVM article in Model)
+                        {
+                            <tr>
+                                <td>@article.Title</td>
+                                <td>@article.Content</td>
+                                <td>
+                                    <img src="@article.Image" width="60" />
+                                </td>
+                                <td>@article.CategoryName</td>
+                                <td>@article.AuthorName</td>
+                                <td>
+                                    <a asp-action="Update" asp-route-id="@article.Id" class="btn btn-sm btn-warning">Update</a>
+                                </td>
+                                <td>
+                                    <a asp-action="Details" asp-route-id="@article.Id" class="btn btn-sm btn-info">Details</a>
+                                </td>
+                                <td>
+                                    <a asp-action="Delete" asp-route-id="@article.Id" class="btn btn-sm btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="box-footer">
+                <a asp-action="Create" class="btn btn-block btn-dark">Create New Category</a>
+            </div>
+        </div>
+    </div>
+</div>

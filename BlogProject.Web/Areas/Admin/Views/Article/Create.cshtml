@@ -1,0 +1,62 @@
+﻿@model CreateArticleDTO
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="box">
+            <div class="box-header">
+                <h4 class="box-title">Create Article</h4>
+            </div>
+            <div class="box-body">
+                <form asp-action="Create" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Title"></label>
+                        <input asp-for="Title" class="form-control" placeholder="Title" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Content"></label>
+                        <input asp-for="Content" class="form-control" placeholder="Description" />
+                        <span asp-validation-for="Content" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ImagePath"></label>
+                        <input type="file" asp-for="ImagePath" class="form-control" />
+                        <span asp-validation-for="Image" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Choose a Category</label>
+                        <select asp-for="CategoryId" class="form-control">
+                            @foreach (var category in Model.Categories)
+                            {
+                                <option value="@category.Id">@category.Name</option>
+                            }
+                        </select>
+                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Choose a Author</label>
+                        <select asp-for="AppUserId" class="form-control">
+                            @foreach (var appUser in Model.AppUsers)
+                            {
+                                <option value="@appUser.Id">@appUser.FirstName @appUser.LastName</option>
+                            }
+                        </select>
+                        <span asp-validation-for="AppUserId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group float-right">
+                        <input type="submit" value="Submit" class="btn btn-sm btn-primary" />
+                    </div>
+                </form>
+            </div>
+            <div class="box-footer">
+                <a asp-action="List" class="btn btn-block btn-dark">Back To List</a>
+            </div>
+        </div>
+    </div>
+</div>
