@@ -1,1 +1,1 @@
-CoreBlogProject
+Core_Blog_Project
